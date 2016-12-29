@@ -2,12 +2,14 @@
   "def":[
     {
       "name":"id",
-      "pos":1,
+      "start":1,
+      "length":1,
       "required":true
     },
     {
       "name":"amount",
-      "pos":3,
+      "start":3,
+      "length":1,
       "required":true
     }
   ]

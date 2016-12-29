@@ -18,7 +18,25 @@ public class VixenConfig {
 class def{
 
     private String name;
-    private int pos;
+    private int start;
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    private int length;
     private boolean required;
 
     public String getName() {
@@ -29,13 +47,7 @@ class def{
         this.name = name;
     }
 
-    public int getPos() {
-        return pos;
-    }
 
-    public void setPos(int pos) {
-        this.pos = pos;
-    }
 
     public boolean isRequired() {
         return required;
