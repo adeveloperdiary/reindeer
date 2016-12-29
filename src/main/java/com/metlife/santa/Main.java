@@ -17,7 +17,7 @@ public class Main {
 
 
         Vixen s=new Vixen();
-        s.init("/Users/abhisekjana/spark/reindeer/src/main/resources/santa.vixen.config.json")
+        s.init("santa.vixen.config.json")
                 .chain(j);
         s.process();
 
