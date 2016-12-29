@@ -5,6 +5,7 @@ public class DasherConfig {
 
     private String name;
     private String master;
+    private String input_url;
 
     public String getInput_url() {
         return input_url;
@@ -30,7 +31,7 @@ public class DasherConfig {
         this.master = master;
     }
 
-    private String input_url;
+
 
 }
 
