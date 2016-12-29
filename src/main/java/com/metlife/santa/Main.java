@@ -1,9 +1,11 @@
 package com.metlife.santa;
 
+import com.metlife.santa.core.Dancer;
 import com.metlife.santa.core.Dasher;
 import com.metlife.santa.core.Vixen;
 
 import java.io.IOException;
+
 
 
 public class Main {
@@ -14,11 +16,17 @@ public class Main {
         j.init("santa.dasher.config.json");
         j.process();
 
+        Dancer d=new Dancer();
+        d.init("santa.dancer.config.json")
+                .chain(j);
+        d.process();
 
         Vixen s=new Vixen();
         s.init("santa.vixen.config.json")
-                .chain(j);
+                .chain(d);
         s.process();
+
+        j.stop();
 
     }
 }

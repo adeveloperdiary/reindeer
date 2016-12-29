@@ -24,6 +24,7 @@ public class Dasher extends ReindeerBase {
         DasherConfig objDasherConfig=(DasherConfig)config;
 
         this.conf=new SparkConf().setAppName(objDasherConfig.getName()).setMaster(objDasherConfig.getMaster());
+
         this.sc=new JavaSparkContext(conf);
 
         this.rddOutput=this.sc.textFile(objDasherConfig.getInput_url());
