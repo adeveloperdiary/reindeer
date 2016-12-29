@@ -6,7 +6,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 
-public class Dasher extends Reindeer {
+public class Dasher extends ReindeerBase {
 
     private SparkConf conf;
 

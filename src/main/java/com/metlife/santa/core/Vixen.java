@@ -4,9 +4,9 @@ import com.metlife.santa.config.DasherConfig;
 import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 
-public class Vixen extends Reindeer {
+public class Vixen extends ReindeerBase {
 
-    public Reindeer init(String file) throws IOException {
+    public ReindeerBase init(String file) throws IOException {
 
         TypeReference<DasherConfig> typeRef
                 = new TypeReference<DasherConfig>() {};
@@ -21,7 +21,7 @@ public class Vixen extends Reindeer {
         });
     }
 
-    public void chain(Reindeer previous){
+    public void chain(ReindeerBase previous){
         this.rddInput=previous.rddOutput;
     }
 
