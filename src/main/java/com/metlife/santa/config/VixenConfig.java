@@ -47,8 +47,6 @@ class def{
         this.name = name;
     }
 
-
-
     public boolean isRequired() {
         return required;
     }

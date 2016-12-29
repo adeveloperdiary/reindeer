@@ -1,7 +1,6 @@
 package com.metlife.santa.core;
 
 import com.metlife.santa.config.VixenConfig;
-import com.sun.rowset.internal.Row;
 import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 
@@ -16,12 +15,9 @@ public class Vixen extends ReindeerBase {
         return this;
     }
 
-
-
     public void process(){
 
         VixenConfig objVixenConfig=(VixenConfig)config;
-
 
         this.rddInput.collect().forEach(o->{
             System.out.println(o);
