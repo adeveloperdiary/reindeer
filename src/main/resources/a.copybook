@@ -1,0 +1,5 @@
+        01 Claim.
+           03 Type                Pic x(3).
+           03 Claim-Num	          Pic 9(8).
+           03 Cust-Name           Pic X(20).
+           03 Claim-Status        Pic 999.
