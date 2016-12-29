@@ -7,7 +7,7 @@ import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 import java.io.InputStream;
 
-abstract public class Reindeer {
+abstract public class ReindeerBase {
 
     protected JavaRDD rddInput;
     protected JavaRDD rddOutput;
@@ -39,7 +39,7 @@ abstract public class Reindeer {
         }
     }
 
-    public void chain(Reindeer previous){
+    public void chain(ReindeerBase previous){
     }
 
     abstract public void process();
