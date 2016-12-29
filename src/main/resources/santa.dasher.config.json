@@ -2,5 +2,5 @@
 
   "name":"Adaptor",
   "master":"local[*]",
-  "input_url":"hdfs://localhost:9000/stage/data/customer-orders.csv"
+  "input_url":"hdfs://localhost:9000/stage/data/data.txt"
 }

@@ -11,7 +11,6 @@ public class Main {
         Dasher j=new Dasher();
 
 
-
         j.init("santa.dasher.config.json");
         j.process();
 

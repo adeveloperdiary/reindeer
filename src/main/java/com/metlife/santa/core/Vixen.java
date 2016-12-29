@@ -1,6 +1,7 @@
 package com.metlife.santa.core;
 
-import com.metlife.santa.config.DasherConfig;
+import com.metlife.santa.config.VixenConfig;
+import com.sun.rowset.internal.Row;
 import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 
@@ -8,14 +9,20 @@ public class Vixen extends ReindeerBase {
 
     public ReindeerBase init(String file) throws IOException {
 
-        TypeReference<DasherConfig> typeRef
-                = new TypeReference<DasherConfig>() {};
+        TypeReference<VixenConfig> typeRef
+                = new TypeReference<VixenConfig>() {};
 
         init(typeRef,file);
         return this;
     }
 
+
+
     public void process(){
+
+        VixenConfig objVixenConfig=(VixenConfig)config;
+
+
         this.rddInput.collect().forEach(o->{
             System.out.println(o);
         });
