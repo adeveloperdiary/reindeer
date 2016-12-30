@@ -1,3 +1,5 @@
+import com.metlife.santa.core.{Dancer, Dasher, Vixen}
+
 object Job {
 
   def main(args: Array[String]) {

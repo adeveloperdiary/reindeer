@@ -1,3 +1,5 @@
+package com.metlife.santa.core
+
 import com.metlife.santa.config.DasherConfig
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}

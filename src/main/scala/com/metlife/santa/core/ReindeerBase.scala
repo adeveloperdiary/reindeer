@@ -1,5 +1,8 @@
-import java.io.{ IOException, InputStream}
+package com.metlife.santa.core
+
+import java.io.{IOException, InputStream}
 import java.util.Properties
+
 import org.codehaus.jackson.map.ObjectMapper
 
 

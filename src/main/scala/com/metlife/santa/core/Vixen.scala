@@ -1,3 +1,5 @@
+package com.metlife.santa.core
+
 import java.util
 
 import org.apache.spark.SparkContext
