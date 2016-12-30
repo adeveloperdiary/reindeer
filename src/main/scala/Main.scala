@@ -1,4 +1,3 @@
-
 object Job {
 
   def main(args: Array[String]) {
@@ -12,7 +11,7 @@ object Job {
     val s: Vixen = new Vixen
     s.init("santa.vixen.config.json")
 
-    s.process(d.process(j.process))
+    s.process(d.process(j.process,j.getSparkContext()),j.getSparkContext())
 
   }
 }

@@ -21,4 +21,10 @@ class Dasher extends ReindeerBase{
     this.sc.textFile(objDasherConfig.getInput_url)
 
   }
+
+  def getSparkContext():SparkContext ={
+    sc
+  }
+
+
 }

@@ -1,17 +1,16 @@
-{
-  "def":[
-    {
-      "name":"id",
-      "start":1,
-      "length":1,
-      "required":true
-    },
-    {
-      "name":"amount",
-      "start":3,
-      "length":1,
-      "required":true
-    }
-  ]
-
-}
+[
+  {
+    "name":"Claim",
+    "children":
+      [
+        {
+          "name":"Type",
+          "regex":"[A-z]+"
+        },
+        {
+          "name":"Claim-Status",
+          "regex":"[0-9]+"
+        }
+      ]
+  }
+]
