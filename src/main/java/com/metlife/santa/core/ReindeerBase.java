@@ -4,30 +4,27 @@ import org.apache.spark.api.java.JavaRDD;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Properties;
 
-abstract public class ReindeerBase {
+abstract public class ReindeerBase implements Serializable{
 
     protected JavaRDD rddInput;
     protected JavaRDD rddOutput;
     protected JavaRDD rddError;
-
+    protected Properties prop;
     protected Object config;
 
-    public JavaRDD getRddInput() {
-        return rddInput;
+    public ReindeerBase(){
+        this.prop=new Properties();
     }
 
-    public JavaRDD getRddOutput() {
-        return rddOutput;
+    public void initReindeer(String file) throws IOException{
+        this.prop.load(this.getClass().getClassLoader().getResourceAsStream(file));
     }
 
-    public JavaRDD getRddError() {
-        return rddError;
-    }
 
-    public void init(TypeReference typeRef,String file) throws IOException {
+    public void initReindeer(TypeReference typeRef,String file) throws IOException {
 
         ObjectMapper obj=new ObjectMapper();
         InputStream in=null;
@@ -44,7 +41,18 @@ abstract public class ReindeerBase {
 
     abstract public void process();
 
-    public void stop(){}
+
+    public JavaRDD getRddInput() {
+        return rddInput;
+    }
+
+    public JavaRDD getRddOutput() {
+        return rddOutput;
+    }
+
+    public JavaRDD getRddError() {
+        return rddError;
+    }
 }
 
 

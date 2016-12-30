@@ -11,7 +11,7 @@ public class Vixen extends ReindeerBase {
         TypeReference<VixenConfig> typeRef
                 = new TypeReference<VixenConfig>() {};
 
-        init(typeRef,file);
+        initReindeer(typeRef,file);
         return this;
     }
 

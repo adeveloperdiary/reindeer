@@ -27,8 +27,8 @@
     <orderEntry type="module-library">
       <library name="SBT: unmanaged-jars">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../lib/cb2java-5.3.jar!/" />
           <root url="jar://$MODULE_DIR$/../../libs/cb2java-5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/cb2java-5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
