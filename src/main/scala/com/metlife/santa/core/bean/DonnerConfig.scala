@@ -1,7 +1,5 @@
 package com.metlife.santa.core.bean
 
-
-
 import java.util
 
 import scala.beans.BeanProperty
@@ -21,5 +19,6 @@ case class Attribute(){
   @BeanProperty var name: String = null
   @BeanProperty var transform: String = null
   @BeanProperty var source: String = null
+  @BeanProperty var dtype: String = null
 
 }

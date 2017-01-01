@@ -10,12 +10,25 @@
         {
           "name":"ClaimType",
           "source":"Type",
-          "transform":"trim"
+          "transform":"trim|uppercase",
+          "dtype":"core"
         },
         {
-          "name":"status",
+          "name":"Status",
           "source":"Claim-Status",
-          "transform":"lookup:UCS-Claim-Status"
+          "transform":"lookup:UCS-Claim-Status",
+          "dtype":"core"
+        },
+        {
+          "name":"ClaimNumber",
+          "source":"Claim-Num",
+          "dtype":"base"
+        },
+        {
+          "name":"CustomerName",
+          "source":"Cust-Name",
+          "dtype":"ext",
+          "transform":"trim|lowercase"
         }
       ]
     }
