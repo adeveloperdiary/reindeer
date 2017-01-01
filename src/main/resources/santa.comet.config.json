@@ -1,0 +1,8 @@
+{
+  "mapping":[
+    {
+      "tableName":"Claim",
+      "entityName":"Claim"
+    }
+  ]
+}

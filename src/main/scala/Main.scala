@@ -15,8 +15,8 @@ object Job {
     val donner: Donner = new Donner
     donner.init("donner").chain(vixen).process()
 
-    //val commet:Comet=new Comet
-    //commet.init("commet").chain(donner).process()
+    val commet:Comet=new Comet
+    commet.init("comet").chain(donner).process()
 
   }
 }

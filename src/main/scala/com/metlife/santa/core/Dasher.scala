@@ -17,7 +17,7 @@ class Dasher extends ReindeerBase{
   override def process() = {
 
 
-    val objDasherConfig = config.asInstanceOf[DasherConfig]
+    val objDasherConfig = reindeerConfig.asInstanceOf[DasherConfig]
 
     Logger.getLogger("org").setLevel(Level.ERROR)
 

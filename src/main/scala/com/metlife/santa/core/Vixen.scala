@@ -20,7 +20,7 @@ class Vixen extends ReindeerBase{
     val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
 
     //TODO - Convert to Object from Map
-    val validation=sc.broadcast[util.ArrayList[AnyVal]](config.asInstanceOf[util.ArrayList[AnyVal]])
+    val validation=sc.broadcast[util.ArrayList[AnyVal]](reindeerConfig.asInstanceOf[util.ArrayList[AnyVal]])
 
     outputRDD=_tempRDD.filter(row=>{
 

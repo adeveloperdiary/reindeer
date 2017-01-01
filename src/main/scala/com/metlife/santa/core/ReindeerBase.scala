@@ -10,7 +10,7 @@ import org.codehaus.jackson.map.{ObjectMapper}
 
 trait Reindeer {
   protected var prop: Properties = new Properties()
-  protected var config: Any = null
+  protected var reindeerConfig: Any = null
 
   protected var conf: SparkConf = null
   protected var sc: SparkContext = null
@@ -48,8 +48,8 @@ abstract class ReindeerBase extends Reindeer{
     try {
 
       //mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-      in = this.getClass.getClassLoader.getResourceAsStream(fileName)
-      this.config = mapper.readValue(in, className)
+      in = getClass.getClassLoader.getResourceAsStream(fileName)
+      reindeerConfig = mapper.readValue(in, className)
     } finally {
       in.close
     }

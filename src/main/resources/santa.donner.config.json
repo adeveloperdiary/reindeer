@@ -8,6 +8,10 @@
       "attributeMap":
       [
         {
+          "source":"Claim-Num",
+          "dtype":"key"
+        },
+        {
           "name":"ClaimType",
           "source":"Type",
           "transform":"trim|uppercase",
