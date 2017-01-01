@@ -1,9 +1,7 @@
 package com.metlife.santa.core
 
 import java.io.{File, FileInputStream}
-import java.util
 import net.sf.cb2java.copybook.{Copybook, CopybookParser}
-import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 
 class Dancer extends ReindeerBase{

@@ -1,6 +1,7 @@
 package com.metlife.santa.core
 
-import com.metlife.santa.config.DasherConfig
+
+import com.metlife.santa.core.bean.DasherConfig
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -13,9 +14,9 @@ class Dasher extends ReindeerBase{
   }
 
   override def process() = {
-    val objDasherConfig: DasherConfig = config.asInstanceOf[DasherConfig]
+    val objDasherConfig = config.asInstanceOf[DasherConfig]
 
-    conf = new SparkConf().setAppName(objDasherConfig.getName).setMaster(objDasherConfig.getMaster)
+    conf = new SparkConf().setAppName(objDasherConfig.name).setMaster(objDasherConfig.master)
     sc = new SparkContext(conf)
 
     outputRDD=sc.textFile(objDasherConfig.getInput_url).asInstanceOf[RDD[AnyRef]]

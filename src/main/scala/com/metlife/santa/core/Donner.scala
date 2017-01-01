@@ -1,7 +1,11 @@
 package com.metlife.santa.core
 
-import com.metlife.santa.config.DonnerConfig
-import org.apache.spark.SparkContext
+import java.util
+
+import com.metlife.santa.core.bean.DonnerConfig
+import org.apache.spark.rdd.RDD
+
+
 
 class Donner extends ReindeerBase{
 
@@ -13,14 +17,25 @@ class Donner extends ReindeerBase{
   def process() = {
 
 
-  }
+    val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
 
-  override def getSparkContext():SparkContext ={
-    sc
-  }
+    val mapping=sc.broadcast(config.asInstanceOf[DonnerConfig])
 
-  override def chain(previous: Reindeer): Unit = {
-    sc=previous.getSparkContext()
+    outputRDD=_tempRDD.map(row=>{
+        val entityIterator=mapping.value.getMapping.iterator()
+        while(entityIterator.hasNext){
+          val entity=entityIterator.next()
+          val dataAttributes=row.get(entity.getSorEntityName).asInstanceOf[util.HashMap[String,AnyVal]]
+          println(dataAttributes.toString)
+        }
+
+      (row)
+
+    }).asInstanceOf[RDD[AnyRef]]
+
+
+    outputRDD.collect.foreach(println)
+
   }
 
 }

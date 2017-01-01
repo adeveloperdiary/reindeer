@@ -2,9 +2,10 @@ package com.metlife.santa.core
 
 import java.io.{IOException, InputStream}
 import java.util.Properties
+
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
-import org.codehaus.jackson.map.{DeserializationConfig, ObjectMapper}
+import org.codehaus.jackson.map.{ObjectMapper}
 
 
 trait Reindeer {
@@ -39,6 +40,8 @@ abstract class ReindeerBase extends Reindeer{
 
   @throws[IOException]
   def initReindeer(className: Class[_], file: String) {
+
+
     val fileName="santa."+file+".config.json"
     val mapper: ObjectMapper = new ObjectMapper
     var in: InputStream = null

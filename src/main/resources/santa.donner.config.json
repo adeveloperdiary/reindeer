@@ -10,12 +10,12 @@
         {
           "name":"ClaimType",
           "source":"Type",
-          "xForm":"trim"
+          "transform":"trim"
         },
         {
           "name":"status",
           "source":"Claim-Status",
-          "xForm":"lookup:UCS-Claim-Status"
+          "transform":"lookup:UCS-Claim-Status"
         }
       ]
     }
