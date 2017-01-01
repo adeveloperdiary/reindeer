@@ -5,11 +5,15 @@
       [
         {
           "name":"Type",
-          "regex":"[A-z]+"
+          "regex":"[A-z]{3}"
         },
         {
           "name":"Claim-Status",
-          "regex":"[0-9]+"
+          "regex":"[0-9]{3}"
+        },
+        {
+          "name":"Cust-Name",
+          "regex":"^(?!\\s*$).+"
         }
       ]
   }

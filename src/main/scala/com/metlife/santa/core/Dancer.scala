@@ -8,11 +8,15 @@ import org.apache.spark.rdd.RDD
 
 class Dancer extends ReindeerBase{
 
-  def init(file: String) = {
+  override def init(file: String):ReindeerBase = {
     initReindeer(file)
+    this
   }
 
-  def process(inputRDD:RDD[String],sc:SparkContext):RDD[util.Map[String, AnyRef]] = {
+  override def process() = {
+
+    val _tempRDD=inputRDD.asInstanceOf[RDD[String]]
+
     val file: String = this.prop.getProperty("copybook_url")
 
     val copybook=sc.broadcast[Copybook](CopybookParser.parse("A", new FileInputStream(new File(file))))
@@ -23,10 +27,11 @@ class Dancer extends ReindeerBase{
       )
     }*/
 
-    inputRDD.map(line=>{
+    outputRDD=_tempRDD.map(line=>{
       val record=copybook.value.parseData(line.getBytes())
       record.toMap()
 
     })
+
   }
 }

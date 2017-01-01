@@ -1,7 +1,7 @@
 package com.metlife.santa.config;
 
 
-public class DasherConfig {
+public class DasherConfig implements java.io.Serializable{
 
     private String name;
     private String master;

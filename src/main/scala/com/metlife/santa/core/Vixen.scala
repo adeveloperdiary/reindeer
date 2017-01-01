@@ -2,41 +2,45 @@ package com.metlife.santa.core
 
 import java.util
 
-import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 
 class Vixen extends ReindeerBase{
 
-  def init(file: String) = {
+  override def init(file: String):ReindeerBase = {
     initReindeer(classOf[AnyVal],file)
+    this
   }
 
-  def process(inputRDD:RDD[util.Map[String, AnyRef]],sc:SparkContext) = {
+  def process() = {
 
+    val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
+
+    //TODO - Convert to Object from Map
     val validation=sc.broadcast[util.ArrayList[AnyVal]](config.asInstanceOf[util.ArrayList[AnyVal]])
 
-    inputRDD.filter(x=>{
+    outputRDD=_tempRDD.filter(row=>{
 
       var flag=true
-      val it=validation.value.iterator()
-      while(it.hasNext){
-        val element=it.next().asInstanceOf[util.HashMap[String,AnyVal]]
-        if(element.get("children")!=null){
+      val itValidationRoot=validation.value.iterator()
+      while(itValidationRoot.hasNext){
+        val validationEntity=itValidationRoot.next().asInstanceOf[util.HashMap[String,AnyVal]]
 
-          val dataAttr=x.get(element.get("name")).asInstanceOf[util.HashMap[String,AnyVal]]
+        if(validationEntity.get("children")!=null){
 
-          val it1=element.get("children").asInstanceOf[util.ArrayList[AnyVal]].iterator
-          while(it1.hasNext){
-            val attributes=it1.next().asInstanceOf[util.HashMap[String,AnyVal]]
+          val dataEntity=row.get(validationEntity.get("name")).asInstanceOf[util.HashMap[String,AnyVal]]
 
-            val data:String=dataAttr.get(attributes.get("name")).asInstanceOf[String]
+          val itValidationElements=validationEntity.get("children").asInstanceOf[util.ArrayList[AnyVal]].iterator
+          while(itValidationElements.hasNext){
+            val validationElement=itValidationElements.next().asInstanceOf[util.HashMap[String,AnyVal]]
 
-            if(attributes.get("regex")!=null
-              && !attributes.get("regex").asInstanceOf[String].equalsIgnoreCase("")){
+            val dataElement:String=dataEntity.get(validationElement.get("name")).asInstanceOf[String]
+
+            if(validationElement.get("regex")!=null
+              && !validationElement.get("regex").asInstanceOf[String].equalsIgnoreCase("")){
               //TODO - RegEx
 
-              if(!data.matches(attributes.get("regex").asInstanceOf[String])){
-                println("Regex Validation failed : ["+ dataAttr.toString+"] ["+data+"] ["+attributes.get("regex")+"]")
+              if(!dataElement.matches(validationElement.get("regex").asInstanceOf[String])){
+                println("Regex Validation failed : ["+ dataEntity.toString+"] ["+dataElement+"] ["+validationElement.get("regex")+"]")
 
                 flag=false
 
@@ -48,9 +52,10 @@ class Vixen extends ReindeerBase{
         }
       }
 
-
       flag
-    })
-    .collect.foreach(println)
+    }).asInstanceOf[RDD[AnyRef]]
+
+    outputRDD.collect.foreach(println)
   }
+
 }

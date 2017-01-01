@@ -6,27 +6,19 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 class Dasher extends ReindeerBase{
 
-  private var conf: SparkConf = null
-  private var sc: SparkContext = null
-
-  def init(file: String) = {
+  override def init(file: String):ReindeerBase = {
     initReindeer(classOf[DasherConfig],file)
+
+    this
   }
 
-  def process():RDD[String] = {
-
+  override def process() = {
     val objDasherConfig: DasherConfig = config.asInstanceOf[DasherConfig]
 
-    this.conf = new SparkConf().setAppName(objDasherConfig.getName).setMaster(objDasherConfig.getMaster)
-    this.sc = new SparkContext(conf)
+    conf = new SparkConf().setAppName(objDasherConfig.getName).setMaster(objDasherConfig.getMaster)
+    sc = new SparkContext(conf)
 
-    this.sc.textFile(objDasherConfig.getInput_url)
-
+    outputRDD=sc.textFile(objDasherConfig.getInput_url).asInstanceOf[RDD[AnyRef]]
   }
-
-  def getSparkContext():SparkContext ={
-    sc
-  }
-
 
 }

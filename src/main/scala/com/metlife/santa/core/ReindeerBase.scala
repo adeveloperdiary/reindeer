@@ -2,32 +2,72 @@ package com.metlife.santa.core
 
 import java.io.{IOException, InputStream}
 import java.util.Properties
+import org.apache.spark.rdd.RDD
+import org.apache.spark.{SparkConf, SparkContext}
+import org.codehaus.jackson.map.{DeserializationConfig, ObjectMapper}
 
-import org.codehaus.jackson.map.ObjectMapper
 
-
-class ReindeerBase {
-
+trait Reindeer {
   protected var prop: Properties = new Properties()
   protected var config: Any = null
 
+  protected var conf: SparkConf = null
+  protected var sc: SparkContext = null
+
+  protected var inputRDD:RDD[AnyRef]=null
+  protected var outputRDD:RDD[AnyRef]=null
+
+  def getSparkContext():SparkContext
+
+
+  def init(file: String):ReindeerBase
+  def chain(previous:Reindeer )
+  def process()
+
+  def getInputRDD():RDD[AnyRef]
+  def getOutputRDD():RDD[AnyRef]
+}
+
+
+abstract class ReindeerBase extends Reindeer{
+
   @throws[IOException]
   def initReindeer(file: String) {
-    this.prop.load(this.getClass.getClassLoader.getResourceAsStream(file))
+    val fileName="santa."+file+".properties"
+    this.prop.load(this.getClass.getClassLoader.getResourceAsStream(fileName))
   }
 
   @throws[IOException]
   def initReindeer(className: Class[_], file: String) {
-    val obj: ObjectMapper = new ObjectMapper
+    val fileName="santa."+file+".config.json"
+    val mapper: ObjectMapper = new ObjectMapper
     var in: InputStream = null
     try {
-      in = this.getClass.getClassLoader.getResourceAsStream(file)
-      this.config = obj.readValue(in, className)
+
+      //mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+      in = this.getClass.getClassLoader.getResourceAsStream(fileName)
+      this.config = mapper.readValue(in, className)
     } finally {
       in.close
     }
   }
 
+  override def getInputRDD():RDD[AnyRef]={
+    inputRDD
+  }
+
+  override def getOutputRDD():RDD[AnyRef]={
+    outputRDD
+  }
+
+  override def getSparkContext():SparkContext ={
+    sc
+  }
+
+  override def chain(previous: Reindeer): Unit = {
+    this.sc=previous.getSparkContext()
+    inputRDD=previous.getOutputRDD()
+  }
 }
 
 

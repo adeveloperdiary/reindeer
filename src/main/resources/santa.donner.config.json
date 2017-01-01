@@ -1,0 +1,23 @@
+{
+  "mapping":
+  [
+    {
+      "entityName":"Claim",
+      "sorEntityName":"Claim",
+      "lookups":"UCS-Claim-Status",
+      "attributeMap":
+      [
+        {
+          "name":"ClaimType",
+          "source":"Type",
+          "xForm":"trim"
+        },
+        {
+          "name":"status",
+          "source":"Claim-Status",
+          "xForm":"lookup:UCS-Claim-Status"
+        }
+      ]
+    }
+  ]
+}
