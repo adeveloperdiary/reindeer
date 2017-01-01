@@ -15,7 +15,7 @@ class Comet extends ReindeerBase{
   override def process() = {
 
     println("")
-    println("=============== COMET ( HBASE ) ===================")
+    println("=============== COMET ( HBASE DRIVER) ===================")
     println("")
 
     implicit val config = HBaseConfig(
@@ -49,7 +49,5 @@ class Comet extends ReindeerBase{
       }).toHBase(tableMapping.tableName)
 
     })
-
   }
-
 }
