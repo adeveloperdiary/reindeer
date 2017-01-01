@@ -22,7 +22,7 @@ trait Reindeer {
 
 
   def init(file: String):ReindeerBase
-  def chain(previous:Reindeer )
+  def chain(previous:Reindeer ):Reindeer
   def process()
 
   def getInputRDD():RDD[AnyRef]
@@ -67,9 +67,10 @@ abstract class ReindeerBase extends Reindeer{
     sc
   }
 
-  override def chain(previous: Reindeer): Unit = {
+  override def chain(previous: Reindeer): Reindeer = {
     this.sc=previous.getSparkContext()
     inputRDD=previous.getOutputRDD()
+    this
   }
 }
 
