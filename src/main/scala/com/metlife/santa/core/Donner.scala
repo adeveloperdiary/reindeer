@@ -17,7 +17,9 @@ class Donner extends ReindeerBase{
   }
 
   def process() = {
-
+    println("")
+    println("=============== DONNER ( E3 ) ===================")
+    println("")
 
     val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
 

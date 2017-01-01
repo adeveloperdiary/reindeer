@@ -13,6 +13,10 @@ class Vixen extends ReindeerBase{
 
   def process() = {
 
+    println("")
+    println("=============== VIXEN ( D2 ) ===================")
+    println("")
+
     val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
 
     //TODO - Convert to Object from Map
@@ -55,7 +59,11 @@ class Vixen extends ReindeerBase{
       flag
     }).asInstanceOf[RDD[AnyRef]]
 
-    //outputRDD.collect.foreach(println)
+    /*outputRDD.collect().foreach(println)
+
+    outputRDD
+
+    //outputRDD.collect.foreach(println)*/
   }
 
 }

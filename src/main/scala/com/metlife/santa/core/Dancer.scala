@@ -13,6 +13,10 @@ class Dancer extends ReindeerBase{
 
   override def process() = {
 
+    println("")
+    println("=============== DANCER ( COPYBOOK 2 MAP ) ===================")
+    println("")
+
     val _tempRDD=inputRDD.asInstanceOf[RDD[String]]
 
     val file: String = this.prop.getProperty("copybook_url")
@@ -30,6 +34,10 @@ class Dancer extends ReindeerBase{
       record.toMap()
 
     })
+
+    /*outputRDD.collect().foreach(println)
+
+    outputRDD*/
 
   }
 }
