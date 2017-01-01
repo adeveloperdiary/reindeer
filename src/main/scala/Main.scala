@@ -1,22 +1,22 @@
-import com.metlife.santa.core.{Dancer, Dasher, Donner, Vixen}
+import com.metlife.santa.core._
 
 object Job {
 
   def main(args: Array[String]) {
     val dasher: Dasher = new Dasher
-    dasher.init("dasher")
-    dasher.process()
+    dasher.init("dasher").process()
 
     val dancer: Dancer = new Dancer
-    dancer.init("dancer").chain(dasher)
-    dancer.process()
+    dancer.init("dancer").chain(dasher).process()
 
     val vixen: Vixen = new Vixen
-    vixen.init("vixen").chain(dancer)
-    vixen.process()
+    vixen.init("vixen").chain(dancer).process()
 
     val donner: Donner = new Donner
-    donner.init("donner").chain(vixen)
-    donner.process()
+    donner.init("donner").chain(vixen).process()
+
+    //val commet:Comet=new Comet
+    //commet.init("commet").chain(donner).process()
+
   }
 }
