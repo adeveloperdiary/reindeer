@@ -6,8 +6,8 @@ import com.metlife.santa.core.bean.{DonnerConfig}
 import org.apache.spark.rdd.RDD
 
 
-case class EntityData(name:String,base:collection.mutable.Map[String,String],
-                      core:collection.mutable.Map[String,String],ext:collection.mutable.Map[String,String])
+case class EntityData(name:String,base:Map[String,String],
+                      core:Map[String,String],ext:Map[String,String])
 
 class Donner extends ReindeerBase{
 
@@ -72,7 +72,7 @@ class Donner extends ReindeerBase{
               ext.put(attribute.name,result)
             }
           }
-          entityDataList+=new EntityData(entity.entityName,base,core,ext)
+          entityDataList+=new EntityData(entity.entityName,base.toMap,core.toMap,ext.toMap)
         }
 
       entityDataList
