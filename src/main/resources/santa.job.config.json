@@ -1,0 +1,12 @@
+{
+  "jobs":[
+    {
+      "name":"dasher"
+
+    },
+    {
+      "name":"dancer",
+      "chain":"dasher"
+    }
+  ]
+}

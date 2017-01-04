@@ -29,13 +29,7 @@ class Donner extends ReindeerBase{
 
     val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
 
-
-
-
     val mapping=spark.sparkContext.broadcast[DonnerConfig](reindeerConfig.asInstanceOf[DonnerConfig])
-
-
-
 
     implicit val config = HBaseConfig(
       "hbase.zookeeper.quorum" -> "localhost"
@@ -107,8 +101,6 @@ class Donner extends ReindeerBase{
                   case "lowercase" => data.toLowerCase
                   case _           => data
                 }
-
-
 
                 if(transform.startsWith("lookup:")){
                   val loopupName=transform.split("^lookup:")(1).trim

@@ -45,7 +45,7 @@ abstract class ReindeerBase extends Reindeer{
 
 
     val fileName="santa."+file+".config.json"
-    val mapper: ObjectMapper = new ObjectMapper
+    val mapper = new ObjectMapper
     var in: InputStream = null
     try {
 
