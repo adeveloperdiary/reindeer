@@ -36,6 +36,5 @@ class Cupid extends ReindeerBase{
       client.close()
     })
 
-
   }
 }

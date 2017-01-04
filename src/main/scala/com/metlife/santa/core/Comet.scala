@@ -44,7 +44,7 @@ class Comet extends ReindeerBase{
           "core" -> row.core,
           "ext" -> row.ext
         )
-        row.key->content
+        row.key ->content
 
       }).toHBase(tableMapping.tableName)
 

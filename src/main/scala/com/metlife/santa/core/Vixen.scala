@@ -20,7 +20,7 @@ class Vixen extends ReindeerBase{
     val _tempRDD=inputRDD.asInstanceOf[RDD[util.Map[String, AnyRef]]]
 
     //TODO - Convert to Object from Map
-    val validation=sc.broadcast[util.ArrayList[AnyVal]](reindeerConfig.asInstanceOf[util.ArrayList[AnyVal]])
+    val validation=spark.sparkContext.broadcast[util.ArrayList[AnyVal]](reindeerConfig.asInstanceOf[util.ArrayList[AnyVal]])
 
     outputRDD=_tempRDD.filter(row=>{
 
@@ -59,7 +59,7 @@ class Vixen extends ReindeerBase{
       flag
     }).asInstanceOf[RDD[AnyRef]]
 
-    //outputRDD.collect().foreach(println)
+    outputRDD.collect().foreach(println)
 
   }
 

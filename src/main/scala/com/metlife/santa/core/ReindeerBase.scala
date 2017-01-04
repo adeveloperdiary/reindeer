@@ -4,8 +4,9 @@ import java.io.{IOException, InputStream}
 import java.util.Properties
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
-import org.codehaus.jackson.map.{ObjectMapper}
+import org.codehaus.jackson.map.ObjectMapper
 
 
 trait Reindeer {
@@ -13,12 +14,13 @@ trait Reindeer {
   protected var reindeerConfig: Any = null
 
   protected var conf: SparkConf = null
-  protected var sc: SparkContext = null
+  protected var spark: SparkSession = null
+
 
   protected var inputRDD:RDD[AnyRef]=null
   protected var outputRDD:RDD[AnyRef]=null
 
-  def getSparkContext():SparkContext
+  def getSparkSession():SparkSession
 
 
   def init(file: String):ReindeerBase
@@ -63,12 +65,12 @@ abstract class ReindeerBase extends Reindeer{
     outputRDD
   }
 
-  override def getSparkContext():SparkContext ={
-    sc
+  override def getSparkSession():SparkSession ={
+    spark
   }
 
   override def chain(previous: Reindeer): Reindeer = {
-    this.sc=previous.getSparkContext()
+    spark=previous.getSparkSession()
     inputRDD=previous.getOutputRDD()
     this
   }

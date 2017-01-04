@@ -1,10 +1,16 @@
 {
+
+  "lookups":[
+    {
+      "table":"UCS-Claim-Status",
+      "name":"UCSClaimStatus"
+    }
+  ],
   "mapping":
   [
     {
       "entityName":"Claim",
       "sorEntityName":"Claim",
-      "lookups":"UCS-Claim-Status",
       "attributeMap":
       [
         {
@@ -20,7 +26,7 @@
         {
           "name":"Status",
           "source":"Claim-Status",
-          "transform":"lookup:UCS-Claim-Status",
+          "transform":"lookup:UCSClaimStatus",
           "dtype":"core"
         },
         {
