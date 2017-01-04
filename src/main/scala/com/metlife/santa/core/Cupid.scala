@@ -19,23 +19,22 @@ class Cupid extends ReindeerBase{
 
     val _tempRDD=inputRDD.asInstanceOf[RDD[List[EntityData]]]
 
-
-    _tempRDD.flatMap(row=>row.toArray[EntityData]).map(entity=>{
+    _tempRDD.flatMap(row=>row.toArray[EntityData]).foreachPartition(rows=>{
 
       val client = RexsterClientFactory.open("localhost", "graph")
 
-      val v1 = "v1 = g.addVertex([claimNum:\""+entity.base.get("ClaimNumber").get+"\" ])"
-      val v2 = "v2 = g.addVertex([name:\""+entity.ext.get("CustomerName").get+"\" ])"
-      val e = "e1= g.addEdge(v1,v2,\"has\",[status: \""+entity.core.get("Status").get+"\"])"
+      rows.map(entity=>{
 
-      val out = client.execute(v1+";"+v2+";"+e)
-      print(out.toString)
+        val v1 = "v1 = g.addVertex([claimNum:\""+entity.base.get("ClaimNumber").get+"\" ])"
+        val v2 = "v2 = g.addVertex([name:\""+entity.ext.get("CustomerName").get+"\" ])"
+        val e = "e1= g.addEdge(v1,v2,\"has\",[status: \""+entity.core.get("Status").get+"\"])"
+        val out = client.execute(v1+";"+v2+";"+e)
+        print(out.toString)
+
+      }).length
+
       client.close()
-
-    }).collect()
-
-
-
+    })
 
 
   }
