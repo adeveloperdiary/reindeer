@@ -1,8 +1,11 @@
 import com.metlife.santa.core._
+import org.apache.log4j.{Level, Logger}
 
 object Job {
 
   def main(args: Array[String]) {
+    Logger.getLogger("org").setLevel(Level.ERROR)
+
     val dasher: Dasher = new Dasher
     dasher.init("dasher").process()
 
@@ -15,8 +18,12 @@ object Job {
     val donner: Donner = new Donner
     donner.init("donner").chain(vixen).process()
 
-    val commet:Comet=new Comet
-    commet.init("comet").chain(donner).process()
+    val comet:Comet=new Comet
+    comet.init("comet").chain(donner).process()
+
+    val cupid:Cupid=new Cupid
+    cupid.init("cupid").chain(donner).process()
+
 
   }
 }

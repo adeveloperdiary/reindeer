@@ -59,11 +59,8 @@ class Vixen extends ReindeerBase{
       flag
     }).asInstanceOf[RDD[AnyRef]]
 
-    /*outputRDD.collect().foreach(println)
+    //outputRDD.collect().foreach(println)
 
-    outputRDD
-
-    //outputRDD.collect.foreach(println)*/
   }
 
 }

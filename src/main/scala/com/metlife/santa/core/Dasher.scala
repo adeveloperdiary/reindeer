@@ -16,11 +16,7 @@ class Dasher extends ReindeerBase{
 
   override def process() = {
 
-
     val objDasherConfig = reindeerConfig.asInstanceOf[DasherConfig]
-
-    Logger.getLogger("org").setLevel(Level.ERROR)
-
 
     conf = new SparkConf().setAppName(objDasherConfig.name).setMaster(objDasherConfig.master)
     sc = new SparkContext(conf)
@@ -31,9 +27,9 @@ class Dasher extends ReindeerBase{
 
     outputRDD=sc.textFile(objDasherConfig.getInput_url).asInstanceOf[RDD[AnyRef]]
 
-    /*outputRDD.collect().foreach(println)
+    //outputRDD.collect().foreach(println)
 
-    outputRDD*/
+
 
   }
 

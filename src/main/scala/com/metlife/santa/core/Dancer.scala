@@ -35,9 +35,7 @@ class Dancer extends ReindeerBase{
 
     })
 
-    /*outputRDD.collect().foreach(println)
-
-    outputRDD*/
+    //outputRDD.collect().foreach(println)
 
   }
 }
