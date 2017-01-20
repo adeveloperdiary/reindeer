@@ -129,8 +129,7 @@ class Donner extends ReindeerBase{
 
     }).asInstanceOf[RDD[AnyRef]]
 
-    outputRDD.collect.foreach(println)
+    //outputRDD.collect.foreach(println)
 
   }
-
 }

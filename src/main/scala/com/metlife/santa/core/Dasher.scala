@@ -30,9 +30,9 @@ class Dasher extends ReindeerBase{
     println("=============== DASHER ( Driver ) ===================")
     println("")
 
-    outputRDD=spark.sparkContext.textFile(objDasherConfig.getInput_url).asInstanceOf[RDD[AnyRef]]
+    outputRDD=spark.sparkContext.textFile(objDasherConfig.input_url).asInstanceOf[RDD[AnyRef]]
 
-    outputRDD.collect().foreach(println)
+    //outputRDD.collect().foreach(println)
 
 
   }

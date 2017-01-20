@@ -6,6 +6,9 @@ scalaVersion := "2.11.8"
 
 val hbaseVersion = "1.0.0-cdh5.5.2"
 
+dependencyOverrides ++= Set("com.fasterxml.jackson.core" % "jackson-databind" % "2.6.4")
+dependencyOverrides ++= Set("com.google.guava" % "guava" % "16.0")
+
 libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.2"
 libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.2"
 
@@ -20,10 +23,14 @@ libraryDependencies +=  "org.apache.hbase" % "hbase-server" % hbaseVersion exclu
 libraryDependencies += "org.apache.hbase" % "hbase-protocol" % hbaseVersion
 libraryDependencies += "org.apache.hbase" % "hbase-hadoop-compat" % hbaseVersion
 
+
 libraryDependencies += "org.json4s" % "json4s-jackson_2.11" % "3.5.0"
 libraryDependencies += "eu.unicredit" % "hbase-rdd_2.11" % "0.8.0"
 
-libraryDependencies += "com.tinkerpop.rexster" % "rexster-protocol" % "2.3.0"
+//libraryDependencies += "com.tinkerpop.rexster" % "rexster-protocol" % "2.3.0"
+
+libraryDependencies += "com.typesafe.play" % "play-ws_2.11" % "2.5.10"
+
 
 resolvers ++= Seq(
   "Cloudera repos" at "https://repository.cloudera.com/artifactory/cloudera-repos",

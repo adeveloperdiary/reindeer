@@ -1,12 +1,28 @@
 {
   "jobs":[
     {
-      "name":"dasher"
-
+      "name":"Dasher",
+      "chain":""
     },
     {
-      "name":"dancer",
-      "chain":"dasher"
+      "name":"Dancer",
+      "chain":"Dasher"
+    },
+    {
+      "name":"Vixen",
+      "chain":"Dancer"
+    },
+    {
+      "name":"Donner",
+      "chain":"Vixen"
+    },
+    {
+      "name":"Comet",
+      "chain":"Donner"
+    },
+    {
+      "name":"Cupid",
+      "chain":"Donner"
     }
   ]
 }

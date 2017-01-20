@@ -3,8 +3,9 @@ import org.apache.log4j.{Level, Logger}
 
 object Job {
 
-  def main(args: Array[String]) {
+  /*def main(args: Array[String]) {
     Logger.getLogger("org").setLevel(Level.ERROR)
+    Logger.getLogger("RexsterClientFactory").setLevel(Level.ERROR)
 
     val dasher: Dasher = new Dasher
     dasher.init("dasher").process()
@@ -25,5 +26,5 @@ object Job {
     cupid.init("cupid").chain(donner).process()
 
 
-  }
+  }*/
 }

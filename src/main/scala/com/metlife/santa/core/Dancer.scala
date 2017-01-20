@@ -21,7 +21,14 @@ class Dancer extends ReindeerBase{
 
     val file: String = this.prop.getProperty("copybook_url")
 
+
+    spark.sparkContext.textFile("/Users/abhisekjana/spark/reindeer/src/main/resources/a.input.txt").collect().foreach(println)
+
+
+
     val copybook=spark.sparkContext.broadcast[Copybook](CopybookParser.parse("A", new FileInputStream(new File(file))))
+
+
 
     /*inputRDD.foreachPartition{records =>
       records.map(record =>
@@ -35,7 +42,7 @@ class Dancer extends ReindeerBase{
 
     })
 
-    outputRDD.collect().foreach(println)
+    //outputRDD.collect().foreach(println)
 
   }
 }
