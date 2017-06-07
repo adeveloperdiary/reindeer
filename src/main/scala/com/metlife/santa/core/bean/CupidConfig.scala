@@ -6,14 +6,14 @@ import scala.beans.BeanProperty
 
 case class CupidConfig() {
   @BeanProperty var config: Config = null
-  @BeanProperty var vertex: util.ArrayList[Vertex]=null
-  @BeanProperty var edge: util.ArrayList[Edge]=null
+  @BeanProperty var graph: Graph=null
 }
 
-case class Vertex() {
-  @BeanProperty var label: String = null
+case class Graph(){
+  @BeanProperty var entity_name: String = null
   @BeanProperty var keys: util.ArrayList[VAttribute] = null
-  @BeanProperty var property: util.ArrayList[VAttribute]=null
+  @BeanProperty var attributes: util.ArrayList[VAttribute]=null
+  @BeanProperty var relationships: util.ArrayList[Relationships]=null
 }
 
 case class Config(){
@@ -25,8 +25,19 @@ case class VAttribute(){
   @BeanProperty var dtype: String = null
 }
 
-case class Edge() {
-  @BeanProperty var parent: String = null
-  @BeanProperty var relationship: String = null
-  @BeanProperty var child: String = null
+case class Relationships() {
+  @BeanProperty var related_entity: RelatedEntity = null
+  @BeanProperty var relationship: Relationship = null
+}
+
+case class RelatedEntity(){
+  @BeanProperty var name: String = null
+  @BeanProperty var dirty: Boolean = false
+  @BeanProperty var keys: util.ArrayList[VAttribute] = null
+  @BeanProperty var attributes: util.ArrayList[VAttribute]=null
+}
+
+case class Relationship(){
+  @BeanProperty var name: String = null
+  @BeanProperty var attributes: util.ArrayList[VAttribute]=null
 }

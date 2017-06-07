@@ -1,38 +1,44 @@
 {
-  "config":{
-    "url":"http://localhost:8182/?gremlin="
+  "config": {
+    "url": "http://localhost:8182/?gremlin="
   },
-  "vertex":[
+  "graph":
     {
-      "label":"Claim",
-      "keys":[{
-        "name":"ClaimNumber",
-        "dtype":"base"
-      }],
-      "property":[
+      "entity_name": "Claim",
+      "keys": [
         {
-          "name":"Status",
-          "dtype":"core"
+          "name": "ClaimNumber",
+          "dtype": "base"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Status",
+          "dtype": "core"
         },
         {
-          "name":"ClaimType",
-          "dtype":"core"
+          "name": "ClaimType",
+          "dtype": "core"
+        }
+      ],
+      "relationships": [
+        {
+          "related_entity": {
+            "name": "Party",
+            "dirty":true,
+            "keys": [
+              {
+                "name": "CustomerName",
+                "dtype": "ext"
+              }
+            ],
+            "attributes": []
+          },
+          "relationship": {
+            "name": "claimant",
+            "attributes": []
+          }
         }
       ]
-    },
-    {
-      "label":"Party",
-      "keys":[{
-        "name":"CustomerName",
-        "dtype":"ext"
-      }]
     }
-  ],
-  "edge":[
-    {
-      "parent":"Claim",
-      "relationship":"belongs_to",
-      "child":"Party"
-    }
-  ]
 }
